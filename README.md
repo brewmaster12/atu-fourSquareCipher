@@ -1,82 +1,66 @@
-# atu-fourSquareCipher
-Final project for the Object Oriented Software Development module for my Higher Diploma in Software Development at ATU Galway
+# ATU Four Square Cipher
 
-My score for this project was 75%
+> Object Oriented Software Development — H.Dip. in Science (Software Development)  
+> ATU, Galway City Campus | **Grade: 75%**
 
-# Project Brief
+---
+
 ## Overview
-You are required to develop a Java application that is capable of encrypting and decrypting a
-text file or URL using a four-square cipher. The four-square cipher was invented by the French
-cryptographer Felix Delastelle (1840-1902) and uses four 5x5 matrices arranged in a square to
-encrypt pairs of characters in a message. Each of the 5x5 matrices contains 25 letters (the
-relatively rare letter j is merged with the letter i). The upper-left and lower-right quadrants
-(shown in green) are plaintext squares containing a standard alphabet. The upper-right and
-lower-left quadrants (shown in blue) are the ciphertext squares contain a mixed random
-alphabetic sequence. The four-square cipher is a polygraphic substitution cipher that uses the
-same keyword to encrypt plain-text and decrypt cipher-text, i.e. the key is symmetric.
 
-The encryption key is used to generate a unique sequence of letters that can be used to populate
-the two ciphertext squares. The key can be randomly generated, specified with one keyword
-or specified using two different keywords (dropping duplicate letters). Any remaining spaces,
-i.e. a key length < 25 characters, should be filled with the remaining letters of the alphabet in
-order.
+A Java console application that encrypts and decrypts text files using the **Four Square Cipher** — a polygraphic substitution cipher invented by French cryptographer Felix Delastelle (1840–1902).
 
-## Minimum requirements
-You are required to develop a Java application that can parse, encrypt and decrypt the
-contents of a text file (small or very large…) or URL using the four-square cipher.
+The cipher uses four 5×5 matrices arranged in a square to encrypt pairs of characters:
 
-- The application should contain a command-line menu that prompts the user to enter a
-keyword(s) and a file or URL. It should then parse the given resource line-by-line,
-encrypt / decrypt the text and then append to an output file.
+| Quadrant | Type | Contents |
+|---|---|---|
+| Upper-left & Lower-right | Plaintext squares | Standard alphabet |
+| Upper-right & Lower-left | Ciphertext squares | Mixed random alphabetic sequence |
 
-- You must use a 2D array structure to implement the four-square cipher. Do not use
-any of the data structures in the Java Collections Framework. The knowledge you
-will gain from mastering array structures will prove invaluable for the programming
-modules in the next semester
+Each matrix holds 25 letters (`j` is merged with `i`). The same keyword is used for both encryption and decryption — making it a **symmetric cipher**.
 
-The objective of the assignment is to reinforce the programming concepts that we have covered
-since the start of the semester. In addition to the methods above, you are free to add any
-additional functionality you want. The application of good programming practice and object-
-oriented techniques will be rewarded.
+---
 
-# README
+## Running the Application
 
-## Description
-This is a console-based application that uses a four square cipher to encrypt or decrypt a .txt file
-specified by the user and outputs the result to another .txt file specified by the user.
-
-## To Run
-
+```bash
 cd src
+javac ie/atu/sw/Runner.java
+java ie.atu.sw.Runner
+```
 
-javac ie/at/sw/Runner.java
-
-java ie.at.sw.Runner
-
+---
 
 ## Features
-- Sequential prompts for user inputs 
 
-- Specify the .txt file user wants to encrypt or decrypt
+- **File encryption & decryption** using the Four Square Cipher
+- **Input validation** throughout:
+  - Input and output files must end in `.txt`
+  - Operation must be either `E` (encrypt) or `D` (decrypt)
+- **Flexible key handling:**
+  - Leave blank to use a default key
+  - Special characters stripped automatically
+  - Duplicate letters removed automatically
+  - Any key length accepted
+  - Deterministic — the same key always produces the same result
+- **2D array implementation** — no Java Collections Framework
 
-  - Validates that the inputted file must end in “.txt” (that it is a .txt file)
-  
-- Specify the name and location of the output file
+---
 
-  - Validates that the inputted file must end in “.txt” (that it is a .txt file)
-  
-- Specify if user wants to encrypt or decrypt the input file
+## How the Key Works
 
-  - Validates that user must choose either encrypt (‘E’) or decrypt (‘D’)
-  
-- Specify a key to use for the encrypted or decryption
+The encryption key generates a unique letter sequence to populate the two ciphertext squares. It can be:
+- Randomly generated
+- A single keyword (duplicates dropped)
+- Two different keywords (duplicates dropped)
 
-  - If key input is left blank a default key will be used
-  
-  - Special characters will be automatically removed
-  
-  - Repeated letters will be automatically removed
-  - Key may be of any length
-  - Key is processed but not randomised so the same key will give consistent results
-    across different instances of the project
-- Uses a four square cipher to encrypt and decrypt
+Any remaining positions (if key length < 25) are filled with the remaining alphabet in order.
+
+---
+
+## Design
+
+- Package: `ie.atu.sw`
+- Object-oriented design with good programming practices
+- Parses and processes text files line-by-line
+
+> ⚠️ **Note:** No generative AI was used in this assignment.
